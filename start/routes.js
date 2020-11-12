@@ -15,8 +15,12 @@
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use("Route");
-const Database = use("Database");
 
 Route.get("/people/:id?", "PeopleController.get");
 Route.post("/people", "PeopleController.add");
 Route.delete("/people", "PeopleController.delete");
+
+//LOGIN ROUTES
+
+Route.post("/login", "AuthController.login");
+Route.post("/register", "AuthController.register");

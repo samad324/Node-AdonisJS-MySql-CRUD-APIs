@@ -4,7 +4,9 @@ const Database = use("Database");
 const { validate } = use("Validator");
 
 class PeopleController {
-  async get({ params, response }) {
+  async get({ params, response, auth }) {
+    const isValid = await auth.check();
+    console.log("PeopleController -> get -> isValid", isValid);
     if (params.id) {
       const res = await Database.table("people").where("id", params.id).first();
       if (!res) return response.status(404).send({ error: "no data found" });
